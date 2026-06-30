@@ -1,0 +1,64 @@
+# This file contains metadata for your plugin.
+
+# This file should be included when you package your plugin.# Mandatory items:
+
+[general]
+name=Survey Quality Control Toolkit
+qgisMinimumVersion=3.0
+qgisMaximumVersion=4.99
+
+description=A plugin to run geometry checks on vectorial polygon layers
+version=0.1
+author=Isaac Thompson
+email=iswaldeen@outlook.com
+
+about=Survey Quality Control Toolkit is a QGIS plugin for running automated geometry and reference-layer checks on polygon layers, helping users identify spatial inconsistencies.
+
+tracker=http://bugs
+repository=http://repo
+# End of mandatory metadata
+
+# Recommended items:
+
+hasProcessingProvider=no
+# Uncomment the following line and add your changelog:
+changelog=<strong>0.1</strong>
+     - GitHub release
+
+    <p><strong>0.03</strong>
+     - Improved spatial index handling
+     - Optimised linear boundary gap performance
+     - Added geometry cache helpers
+     - Added additional layer validation checks
+     - Improved invalid geometry handling
+     - Removed unused imports
+	
+    <p><strong>0.02</strong>
+    - QGIS 4.X and Qt 6 compatibility
+
+    <p><strong>0.01</strong>
+    - First testing release of Survey Quality Control Toolkit plugin
+
+# Tags are comma separated with spaces allowed
+tags=python
+
+homepage=http://homepage
+category=Plugins
+icon=icons/sqc_toolkit_icon.png
+# experimental flag
+experimental=False
+
+# deprecated flag (applies to the whole plugin, not just a single version)
+deprecated=False
+
+# Since QGIS 3.8, a comma separated list of plugins to be installed
+# (or upgraded) can be specified.
+# Check the documentation for more information.
+# plugin_dependencies=
+
+Category of the plugin: Raster, Vector, Database or Web
+# category=
+
+# If the plugin can run on QGIS Server.
+server=False
+

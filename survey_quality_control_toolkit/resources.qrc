@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/plugins/survey_quality_control_toolkit" >
+        <file>icons/sqc_toolkit_icon.png</file>
+		<file>icons/settings_darkmode.png</file>
+		<file>icons/settings.png</file>
+		<file>icons/question_mark_darkmode.png</file>
+		<file>icons/question_mark.png</file>
+		<file>icons/InvalidGeometry.png</file>
+		<file>icons/MissingVertex.png</file>
+		<file>icons/Overlap.png</file>
+		<file>icons/SliverOrGap.png</file>
+    </qresource>
+</RCC>

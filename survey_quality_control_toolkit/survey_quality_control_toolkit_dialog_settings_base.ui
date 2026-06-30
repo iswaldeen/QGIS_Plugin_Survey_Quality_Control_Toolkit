@@ -1,0 +1,482 @@
+<?xml version="1.0" ?>
+<ui version="4.0">
+ <class>SurveyQualityControlToolkitSettingsDialogBase</class>
+ <widget class="QDialog" name="SurveyQualityControlToolkitSettingsDialogBase">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>620</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>620</width>
+    <height>500</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Survey Quality Control Toolkit Settings</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QDialogButtonBox QPushButton {
+    min-width: 78px;
+    min-height: 28px;
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>12</number>
+   </property>
+   <property name="leftMargin">
+    <number>18</number>
+   </property>
+   <property name="topMargin">
+    <number>18</number>
+   </property>
+   <property name="rightMargin">
+    <number>18</number>
+   </property>
+   <property name="bottomMargin">
+    <number>14</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="titleLabel">
+     <property name="text">
+      <string>Settings</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size: 18px; font-weight: bold;</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="descriptionLabel">
+     <property name="text">
+      <string>Configure how checks behave, how results are displayed, and how plugin messages appear.</string>
+     </property>
+
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTabWidget" name="settingsTabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="outputsTab">
+      <attribute name="title">
+       <string>Outputs</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="outputsTabLayout">
+       <item>
+        <widget class="QGroupBox" name="displayGroupBox">
+         <property name="title">
+          <string>Output Layer Styling</string>
+         </property>
+         <layout class="QFormLayout" name="displayFormLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="lineWidthLabel">
+            <property name="text">
+             <string>Outline width:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QDoubleSpinBox" name="outlineWidthSpinBox">
+            <property name="minimum">
+             <double>0.100000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>10.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.100000000000000</double>
+            </property>
+            <property name="value">
+             <double>1.500000000000000</double>
+            </property>
+            <property name="suffix">
+             <string> mm</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="randomColourLabel">
+            <property name="text">
+             <string>Random bright colours:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QCheckBox" name="randomColourCheckBox">
+            <property name="text">
+             <string>Use random bright outline colours for result layers</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="outputSavingGroupBox">
+         <property name="title">
+          <string>Output Saving</string>
+         </property>
+         <layout class="QVBoxLayout" name="outputSavingVerticalLayout">
+          <item>
+           <widget class="QCheckBox" name="saveOutputsCheckBox">
+            <property name="text">
+             <string>Save output layers permanently to a GeoPackage</string>
+            </property>
+            <property name="toolTip">
+             <string>When enabled, result layers are saved to Geopackages/survey_quality_checks.gpkg in the project folder.</string>
+            </property>
+            <property name="checked">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="saveOutputsInfoLabel">
+            <property name="text">
+             <string>If enabled, results are saved beside the QGIS project in Geopackages/survey_quality_checks.gpkg.</string>
+            </property>
+
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="outputsSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="notificationsTab">
+      <attribute name="title">
+       <string>Notifications</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="notificationsTabLayout">
+       <item>
+        <widget class="QGroupBox" name="messageGroupBox">
+         <property name="title">
+          <string>Message Banners</string>
+         </property>
+         <layout class="QFormLayout" name="messageFormLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="messageDurationLabel">
+            <property name="text">
+             <string>Banner duration:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QSpinBox" name="messageDurationSpinBox">
+            <property name="minimum">
+             <number>1</number>
+            </property>
+            <property name="maximum">
+             <number>60</number>
+            </property>
+            <property name="value">
+             <number>10</number>
+            </property>
+            <property name="suffix">
+             <string> seconds</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="notificationsSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="geometryTab">
+      <attribute name="title">
+       <string>Geometry</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="geometryTabLayout">
+       <item>
+        <widget class="QGroupBox" name="geometryToleranceGroupBox">
+         <property name="title">
+          <string>Geometry Tolerance</string>
+         </property>
+         <layout class="QFormLayout" name="geometryToleranceFormLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="geometryToleranceLabel">
+            <property name="text">
+             <string>Tolerance:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QDoubleSpinBox" name="geometryToleranceSpinBox">
+            <property name="toolTip">
+             <string>Small geometry differences below this value may be ignored by checks that use tolerance.</string>
+            </property>
+            <property name="decimals">
+             <number>6</number>
+            </property>
+            <property name="minimum">
+             <double>0.000000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>1000000.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.001000000000000</double>
+            </property>
+            <property name="value">
+             <double>0.000000000000000</double>
+            </property>
+            <property name="suffix">
+             <string> layer units</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="minimumOverlapAreaLabel">
+            <property name="text">
+             <string>Minimum overlap area:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QDoubleSpinBox" name="minimumOverlapAreaSpinBox">
+            <property name="toolTip">
+             <string>Overlap areas smaller than this value will be ignored.</string>
+            </property>
+            <property name="decimals">
+             <number>9</number>
+            </property>
+            <property name="minimum">
+             <double>0.000000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>1000000.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.000100000000000</double>
+            </property>
+            <property name="value">
+             <double>0.000100000000000</double>
+            </property>
+            <property name="suffix">
+             <string> layer units²</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="minimumDifferenceAreaLabel">
+            <property name="text">
+             <string>Minimum difference area:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QDoubleSpinBox" name="minimumDifferenceAreaSpinBox">
+            <property name="toolTip">
+             <string>Difference pieces smaller than this value will be ignored.</string>
+            </property>
+            <property name="decimals">
+             <number>9</number>
+            </property>
+            <property name="minimum">
+             <double>0.000000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>1000000.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.010000000000000</double>
+            </property>
+            <property name="value">
+             <double>0.010000000000000</double>
+            </property>
+            <property name="suffix">
+             <string> layer units²</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="gapCloseDistanceLabel">
+            <property name="text">
+             <string>Gap close distance:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QDoubleSpinBox" name="gapCloseDistanceSpinBox">
+            <property name="toolTip">
+             <string>Distance used by the Linear Boundary Gaps check to close and detect narrow gaps.</string>
+            </property>
+            <property name="decimals">
+             <number>9</number>
+            </property>
+            <property name="minimum">
+             <double>0.000000000000000</double>
+            </property>
+            <property name="maximum">
+             <double>1000000.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.001000000000000</double>
+            </property>
+            <property name="value">
+             <double>0.005000000000000</double>
+            </property>
+            <property name="suffix">
+             <string> layer units</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="geometryToleranceInfoLabel">
+         <property name="text">
+          <string>Use these settings carefully. Values are measured in the units of the layer CRS. Area thresholds use square layer units. Larger values may ignore very small overlaps, difference pieces, or gaps.</string>
+         </property>
+
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="restoreGeometryDefaultsInfoLabel">
+         <property name="text">
+          <string>Use Restore Defaults to return the geometry settings to the original plugin values.</string>
+         </property>
+
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="restoreGeometryDefaultsLayout">
+         <item>
+          <spacer name="restoreGeometryDefaultsSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="restoreGeometryDefaultsButton">
+           <property name="text">
+            <string>Restore Geometry Defaults</string>
+           </property>
+           <property name="toolTip">
+            <string>Restore tolerance, minimum overlap area, minimum difference area, and gap close distance to default values.</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="geometrySpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>SurveyQualityControlToolkitSettingsDialogBase</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>365</x>
+     <y>390</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>SurveyQualityControlToolkitSettingsDialogBase</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>452</x>
+     <y>390</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

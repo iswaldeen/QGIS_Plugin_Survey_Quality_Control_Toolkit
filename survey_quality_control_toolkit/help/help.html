@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Survey Quality Control Toolkit - Help</title>
+    <style>
+        :root {
+            --bg: #f7f9fb;
+            --card: #ffffff;
+            --text: #24313f;
+            --muted: #5d6b78;
+            --accent: #6aa6b8;
+            --accent-soft: #e8f3f6;
+            --border: #d9e4ea;
+            --warning: #fff4dc;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.55;
+        }
+
+        .page {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 28px 18px 48px;
+        }
+
+        header {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(36, 49, 63, 0.06);
+        }
+
+        header img {
+            width: 72px;
+            height: 72px;
+            object-fit: contain;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .subtitle {
+            margin: 6px 0 0;
+            color: var(--muted);
+        }
+
+        section {
+            margin-top: 18px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(36, 49, 63, 0.04);
+        }
+
+        h2 {
+            margin-top: 0;
+            border-bottom: 2px solid var(--accent-soft);
+            padding-bottom: 8px;
+            font-size: 1.35rem;
+        }
+
+        h3 {
+            margin-bottom: 6px;
+            color: #244b5a;
+        }
+
+        ul, ol {
+            padding-left: 22px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        .note {
+            background: var(--accent-soft);
+            border-left: 4px solid var(--accent);
+            padding: 12px 14px;
+            border-radius: 8px;
+            margin: 14px 0;
+        }
+
+        .warning {
+            background: var(--warning);
+            border-left: 4px solid #e0a93a;
+            padding: 12px 14px;
+            border-radius: 8px;
+            margin: 14px 0;
+        }
+
+        .check, .setting {
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .check:last-child,
+        .setting:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        code {
+            background: #eef3f6;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+
+        footer {
+            margin-top: 18px;
+            color: var(--muted);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+    
+.check-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 14px auto;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(36, 49, 63, 0.06);
+}
+
+</style>
+</head>
+<body>
+    <main class="page">
+        <header>
+            <img src="../icons/sqc_toolkit_icon.png" alt="Survey Quality Control Toolkit logo">
+            <div>
+                <h1>Survey Quality Control Toolkit</h1>
+                <p class="subtitle">Simple geometry and reference checks for polygon survey data in QGIS.</p>
+            </div>
+        </header>
+
+        <section>
+            <h2>What this plugin does</h2>
+            <p>
+                The Survey Quality Control Toolkit helps you find common polygon issues in QGIS.
+                It is designed for quick visual checks of survey or digitised polygon data.
+            </p>
+            <p>
+                When a check finds possible issues, the plugin adds a result layer to a group called
+                <code>Survey Quality Checks</code> in the Layers panel.
+            </p>
+            <p>
+                Reference-based checks can now be run against multiple selected reference layers in a single check.
+            </p>
+
+            <div class="note">
+                The result layers are intended to guide your review. Always inspect the results manually
+                before editing your source data.
+            </div>
+        </section>
+
+        <section>
+            <h2>Basic workflow</h2>
+            <ol>
+                <li>Load your polygon layers into QGIS.</li>
+                <li>Open <strong>Survey Quality Control Toolkit</strong>.</li>
+                <li>Select the main <strong>input layer</strong>.</li>
+                <li>Select the check you want to run.</li>
+                <li>If requested, select one or more <strong>reference layers</strong>. Reference checks now support multiple selected polygon layers.</li>
+                <li>Click <strong>OK</strong>.</li>
+                <li>Review the result layer in the <code>Survey Quality Checks</code> group.</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Available checks</h2>
+
+            <div class="check">
+                <h3>Self Overlaps</h3>
+                <p>
+                    Finds places where polygons in the same layer overlap each other.
+                    This is useful when each polygon should be separate and should not cover the same area as another polygon.
+                </p>
+                <p><strong>Example use:</strong> checking that intervention polygons do not overlap other intervention polygons.</p>
+                <p><strong>Result:</strong> shows the overlapping areas between features in the selected input layer.</p>
+    <img class="check-image" src="../resources/images/self_overlaps.png" alt="Example showing self-overlapping polygons highlighted">
+            </div>
+
+            <div class="check">
+                <h3>Multiple Reference Overlaps</h3>
+                <p>
+                    Finds input polygons that overlap more than one feature across the selected reference layer or layers.
+                    It is useful when each input polygon should normally match or sit within only one reference feature, even when the reference data is split across multiple layers.
+                </p>
+                <p><strong>Example use:</strong> checking whether one intervention overlaps several archaeological features when it should only relate to one, including where those reference features are held in separate layers.</p>
+                <p><strong>Result:</strong> shows the parts of input polygons that overlap multiple reference features from the selected reference layer set.</p>
+            
+<img class="check-image" src="../resources/images/multiple_reference_overlaps.png" alt="Example showing an input polygon overlapping multiple reference features">
+</div>
+
+            <div class="check">
+                <h3>Difference Input From Reference</h3>
+                <p>
+                    Compares the input layer against one or more selected reference layers and highlights parts of the input layer
+                    that are not covered by the combined reference coverage.
+                </p>
+                <p><strong>Example use:</strong> checking whether intervention polygons are fully covered by one or more features layers.</p>
+                <p><strong>Result:</strong> shows any leftover areas from the input layer after all selected reference layers have been subtracted.</p>
+            
+<img class="check-image" src="../resources/images/difference_input_from_reference.png" alt="Example showing input polygon areas not covered by reference layers">
+</div>
+
+            <div class="check">
+                <h3>Linear Boundary Gaps</h3>
+                <p>
+                    Finds narrow, sliver-like gaps between polygon features in the same input layer.
+                    These can happen when neighbouring polygons should share a boundary but were digitised slightly apart.
+                </p>
+                <p><strong>Example use:</strong> checking for thin gaps between adjacent intervention or feature polygons.</p>
+                <p><strong>Result:</strong> shows likely narrow boundary gaps that may need to be reviewed or corrected.</p>
+    <img class="check-image" src="../resources/images/linear_boundary_gaps.png" alt="Example showing narrow linear boundary gaps highlighted">
+            </div>
+        </section>
+
+        <section>
+            <h2>Input and reference layers</h2>
+            <p>
+                The <strong>input layer</strong> is the main polygon layer you want to check.
+            </p>
+            <p>
+                Some checks also ask for <strong>reference layers</strong>. These are polygon layers used for comparison against the input layer.
+            </p>
+            <p>
+                Reference checks now allow <strong>multiple reference layers</strong> to be selected. This is useful where your reference data is split across several layers, for example separate feature, intervention, trench, or phase layers.
+            </p>
+            <p>
+                When more than one reference layer is selected, the plugin treats them as a combined reference set for the chosen check.
+            </p>
+
+            <div class="warning">
+                Only polygon layers are supported. If a layer does not appear in the reference layer list, check that it is a valid polygon layer in QGIS.
+            </div>
+        </section>
+
+        <section>
+            <h2>Settings</h2>
+            <p>
+                The settings dialog is organised into tabs for <strong>Outputs</strong>,
+                <strong>Notifications</strong>, and <strong>Geometry</strong>.
+            </p>
+
+            <div class="setting">
+                <h3>Outputs</h3>
+                <p>
+                    <strong>Outline width</strong> controls how thick result-layer outlines appear in QGIS.
+                    A thicker outline can make issues easier to see over your existing map layers.
+                </p>
+                <p>
+                    <strong>Random bright colours</strong> gives each result layer a clear random outline colour.
+                    This helps distinguish results when several checks have been run.
+                </p>
+                <p>
+                    <strong>Save output layers permanently</strong> saves result layers to a GeoPackage instead of leaving them as temporary memory layers.
+                    The plugin uses or creates a <code>Geopackages</code> folder beside the saved QGIS project and writes results to
+                    <code>survey_quality_checks.gpkg</code>.
+                </p>
+            </div>
+
+            <div class="setting">
+                <h3>Notifications</h3>
+                <p>
+                    <strong>Banner duration</strong> controls how long success and warning messages stay visible at the top of the QGIS window.
+                </p>
+            </div>
+
+            <div class="setting">
+                <h3>Geometry tolerance</h3>
+                <p>
+                    <strong>Tolerance</strong> is used by reference-layer checks to make comparisons slightly more forgiving.
+                    It is measured in the units of the layer CRS. For example, in a metre-based CRS, <code>0.001</code> means 1 mm.
+                </p>
+                <p>
+                    Increasing this value can help ignore tiny alignment differences, but setting it too high may hide real geometry issues.
+                </p>
+            </div>
+
+            <div class="setting">
+                <h3>Minimum overlap area</h3>
+                <p>
+                    Controls the smallest overlap area that will be reported by overlap checks.
+                    Smaller overlaps are ignored to reduce noise from tiny slivers or digitising artefacts.
+                </p>
+                <p>
+                    Lower this value if you want the plugin to catch very small overlaps.
+                    Raise it if the results contain too many insignificant tiny overlaps.
+                </p>
+            </div>
+
+            <div class="setting">
+                <h3>Minimum difference area</h3>
+                <p>
+                    Controls the smallest leftover area reported by the <strong>Difference Input From Reference</strong> check.
+                    Areas smaller than this value are ignored.
+                </p>
+            </div>
+
+            <div class="setting">
+                <h3>Gap close distance</h3>
+                <p>
+                    Controls the distance used by the <strong>Linear Boundary Gaps</strong> check to find narrow gaps between nearby polygon boundaries.
+                    A larger value can detect wider gaps, while a smaller value focuses on very narrow gaps.
+                </p>
+            </div>
+
+            <div class="setting">
+                <h3>Restore geometry defaults</h3>
+                <p>
+                    Restores the geometry settings to the plugin's original default values.
+                    This is useful if changed values produce too many or too few results.
+                </p>
+            </div>
+
+            <div class="warning">
+                Geometry settings are measured in the units of your layer CRS. Use small values and adjust gradually.
+                To save outputs permanently, the QGIS project should be saved first so the plugin knows where the project folder is.
+            </div>
+        </section>
+
+        <section>
+            <h2>Understanding the results</h2>
+            <p>
+                Result layers are styled as outline-only layers so they can be viewed clearly over your existing data.
+            </p>
+            <p>
+                If permanent outputs are disabled, result layers are temporary. To keep a temporary result layer,
+                right-click it in QGIS and choose <strong>Export &gt; Save Features As...</strong>.
+            </p>
+            <p>
+                Very small geometry pieces may be ignored by some checks to reduce noise from tiny slivers.
+            </p>
+        </section>
+
+        <section>
+            <h2>Troubleshooting</h2>
+            <ul>
+                <li><strong>No result layer appears:</strong> the check may not have found any issues.</li>
+                <li><strong>The wrong layer was checked:</strong> reopen the tool and confirm the selected input layer and all selected reference layers.</li>
+                <li><strong>Layers are missing from the dropdown:</strong> confirm they are valid polygon layers.</li>
+                <li><strong>Permanent saving fails:</strong> make sure the QGIS project has been saved and the project folder is writable.</li>
+            </ul>
+        </section>
+
+        <footer>
+            Survey Quality Control Toolkit help page
+        </footer>
+    </main>
+</body>
+</html>
