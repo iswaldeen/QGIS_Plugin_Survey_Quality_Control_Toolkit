@@ -14,8 +14,8 @@ email=iswaldeen@outlook.com
 
 about=Survey Quality Control Toolkit is a QGIS plugin for running automated geometry and reference-layer checks on polygon layers, helping users identify spatial inconsistencies.
 
-tracker=http://bugs
-repository=http://repo
+tracker=https://github.com/iswaldeen/QGIS_Plugin_Survey_Quality_Control_Toolkit/issues
+repository=https://github.com/iswaldeen/QGIS_Plugin_Survey_Quality_Control_Toolkit
 # End of mandatory metadata
 
 # Recommended items:
@@ -42,7 +42,7 @@ changelog=<strong>0.1</strong>
 # Tags are comma separated with spaces allowed
 tags=python
 
-homepage=http://homepage
+homepage=https://github.com/iswaldeen/QGIS_Plugin_Survey_Quality_Control_Toolkit
 category=Plugins
 icon=icons/sqc_toolkit_icon.png
 # experimental flag
